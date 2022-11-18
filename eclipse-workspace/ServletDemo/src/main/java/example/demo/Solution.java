@@ -3,6 +3,12 @@ package example.demo;
 import java.util.ArrayList;
 
 public class Solution {
+	
+	/**
+	 * inner class to help better track results by creating an object that has both the shortened string and a boolean that indicates weather the whole word has been found
+	 * @author kneumova
+	 *
+	 */
 
 	class Result {
 		public String result;
@@ -18,6 +24,9 @@ public class Solution {
 	 * the word that is being searched for
 	 */
 	private String word;
+	/**
+	 * the String to search through
+	 */
 	private String text;
 
 	public Solution() {
@@ -101,14 +110,13 @@ public class Solution {
 	}
 
 	/**
-	 * Method that counts appearances of specified word in the string received as a
-	 * parameter (moves in which we can delete the specified word from the string).
-	 * If the string is invalid -1 is returned.
-	 *
-	 * @param s (string that is being searched through)
+	 * Method that counts appearances of specified word in the specified text
+	 * If the string is invalid -1 is returned	 
 	 * @return int (number of times the word has been found)
 	 */
 	public int solution() {
+		//we initialize this variable to the specified text to search through
+		//all changes will be performed on this variable, not on the class property
 		String s = this.text;
 		if (!validateInputString(s)) {
 			System.out.println("The string " + s + " is not valid as input!");

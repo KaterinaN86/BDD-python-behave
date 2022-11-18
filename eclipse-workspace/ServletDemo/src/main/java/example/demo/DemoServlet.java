@@ -1,47 +1,38 @@
 package example.demo;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Servlet implementation class DemoServlet
- */
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 public class DemoServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
+
 	Solution solution = new Solution();
 	ArrayList<String> inputStrings = new ArrayList<String>();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DemoServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * empty constructor that calls parent class constructor
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		
+	public DemoServlet() {
+		super();
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * method that makes a POST request. As a result we can use the request object
+	 * to get the values entered by the user in the HTML form
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		solution.setWord(request.getParameter("wordToLookFor"));		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// parameters are received from URL using the post method and the request object
+		// we use those parameters to initialize our solution object
+		solution.setWord(request.getParameter("wordToLookFor"));
 		solution.setText(request.getParameter("textToSearch"));
-		response.getWriter().println("The word: " + solution.getWord() + " can be found " + solution.solution() + " times in the text: "+ solution.getText());
+		response.getWriter().println("The word: " + solution.getWord() + " can be found " + solution.solution()
+				+ " times in the text: " + solution.getText());
 	}
 
 }
